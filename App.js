@@ -1,11 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+
 
 export default function App() {
+  
+  const win = Dimensions.get('window');
+  const imageWidth = 1920;
+  const imageHeight = 1536;
+  const ratio = win.width * 0.75 / imageWidth;
+  const heightImg = imageHeight * ratio;
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+        <Image source={require('./assets/rover.jpg')} style={[styles.img, {height: heightImg}]} />
+        <Text style={styles.txt}>Le rover Opportunity</Text>
     </View>
   );
 }
@@ -13,8 +20,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'row',
   },
+  img: {
+    flex: 3,
+  },
+  txt: {
+    flex: 1,
+  }
 });
